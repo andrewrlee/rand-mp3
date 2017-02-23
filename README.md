@@ -23,11 +23,13 @@ Limitations:
  * Only displays how much of the track was skipped after hitting enter
  * Only tested on linux
  * Doesn't generate an executable jar
+ * Max start time of a sample is only (an arbitrary) 4 seconds from the end of the track - large samples might go beyond this
  * Hacked together / code is a bit crappy
 
 ## Sample output:
 
-<code>
+<pre>
+
 Starting new track, sample length: 7.953 seconds; For track: "The Seatbelts, Cowboy Bebop Blue - 09-Adieu.mp3"
 
 That sample started at 141.0 seconds
@@ -59,4 +61,5 @@ That sample started at 186.0 seconds
 
 ######################################
 bye!
-</code>
+
+</pre>
