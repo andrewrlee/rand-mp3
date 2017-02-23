@@ -13,20 +13,24 @@ It only has a dependency on pure java 8/maven (as javaFX is bundled with jdk8).
 
 Given a folder full of music, it will pick a random mp3 and choose a random part of the file to play. 
 It will then loop a random lengthed sample from a random position inside the track.
-Pressing enter will then move onto another file and start playing a new sample.
-Typing `quit` and hitting enter will then exit the program. 
+Pressing `enter` will then move onto another file and start playing a new sample.
+Typing `quit` and hitting `enter` will then exit the program. 
 
 The main entry point of the program is the `Runner` class
 
 Build executable jar via standard `mvn clean install`.
 
 Usage:
- 
- `java -jar rand-mp3.jar <file-path> <longest possible sample in seconds>`
+
+```sh
+java -jar rand-mp3.jar <file-path> <longest possible sample in seconds>
+```
 
 e.g:
 
-  `java -jar target/rand-mp3-0.0.1-SNAPSHOT.jar "/home/alee/Desktop/Cowboy Bebop/" 4`
+```sh
+java -jar target/rand-mp3-0.0.1-SNAPSHOT.jar "/home/alee/Desktop/Cowboy Bebop/" 4
+```
 
 Limitations:
  * Doesn't record the resulting sound
