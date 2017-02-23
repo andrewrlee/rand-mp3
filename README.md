@@ -18,11 +18,20 @@ Typing `quit` and hitting enter will then exit the program.
 
 The main entry point of the program is the `Runner` class
 
+Build executable jar via standard `mvn clean install`.
+
+Usage:
+ 
+ `java -jar rand-mp3.jar <file-path> <longest possible sample in seconds>`
+
+e.g:
+
+  `java -jar target/rand-mp3-0.0.1-SNAPSHOT.jar "/home/alee/Desktop/Cowboy Bebop/" 4`
+
 Limitations:
  * Doesn't record the resulting sound
  * Only displays how much of the track was skipped after hitting enter
  * Only tested on linux
- * Doesn't generate an executable jar
  * Max start time of a sample is only (an arbitrary) 4 seconds from the end of the track - large samples might go beyond this
  * Hacked together / code is a bit crappy
 
