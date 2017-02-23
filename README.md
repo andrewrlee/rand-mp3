@@ -24,3 +24,39 @@ Limitations:
  * Only tested on linux
  * Doesn't generate an executable jar
  * Hacked together / code is a bit crappy
+
+## Sample output:
+
+<code>
+Starting new track, sample length: 7.953 seconds; For track: "The Seatbelts, Cowboy Bebop Blue - 09-Adieu.mp3"
+
+That sample started at 141.0 seconds
+
+
+######################################
+Starting new track, sample length: 1.84 seconds; For track: "The Seatbelts, Cowboy Bebop No Disc - 07-Want It All Back.mp3"
+
+That sample started at 138.0 seconds
+
+
+######################################
+Starting new track, sample length: 3.39 seconds; For track: "The Seatbelts, Cowboy Bebop Boxed Set (CD 03) - 15-WO QUI NON COIN (Short Sad Version).mp3"
+
+That sample started at 94.0 seconds
+
+
+######################################
+Starting new track, sample length: 4.654 seconds; For track: "The Seatbelts, Cowboy Bebop Remixes Music for Freelance - 07-Radio Free Mars Talk 4.mp3"
+
+That sample started at 9.0 seconds
+
+
+######################################
+Starting new track, sample length: 7.879 seconds; For track: "The Seatbelts, Cowboy Bebop - 15-Rain.mp3"
+quit
+That sample started at 186.0 seconds
+
+
+######################################
+bye!
+</code>
