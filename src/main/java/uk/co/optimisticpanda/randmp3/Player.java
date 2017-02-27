@@ -27,15 +27,25 @@ class Player {
 		this.maxSampleLength = maxSampleLength;
 	}
 
+	void newSampleFromNewFile() {
+		this.track = chooser.chooseNextTrack();
+	}
+	
+	void newSampleFromSameFile() {
+		this.track.chooseNewDurationToSkip(maxSampleLength);
+	}
+	
 	void play() {
+		if (this.track == null) {
+			newSampleFromNewFile();
+		}
 		this.toggle.set(true);
-		this.track = chooser.nextTrack();
 		this.currentPlayer = new MediaPlayer(track.getMedia());
 		int sampleLength = getSampleLength();
 		currentPlayer.setOnPlaying(() -> {
 			while (toggle.get()) {
 				try {
-					currentPlayer.seek(track.durationToSkip());
+					currentPlayer.seek(track.durationToSkip(maxSampleLength));
 					int i = sampleLength / 100;
 					while (i-- > 0 && toggle.get()) {
 						MILLISECONDS.sleep(100);
@@ -49,7 +59,6 @@ class Player {
 		currentPlayer.setOnReady(() -> {
 			currentPlayer.play();
 		});
-		
 	}
 
 	void stop() {

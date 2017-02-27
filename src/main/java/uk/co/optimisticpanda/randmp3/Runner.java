@@ -1,21 +1,21 @@
 package uk.co.optimisticpanda.randmp3;
 
 import static java.lang.Integer.parseInt;
-import static java.lang.String.format;
 import static javax.swing.SwingUtilities.invokeLater;
+import static uk.co.optimisticpanda.randmp3.Util.checkState;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import javafx.util.Duration;
 import javafx.embed.swing.JFXPanel;
+import javafx.util.Duration;
 
 @SuppressWarnings("restriction")
 public class Runner {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String... args) throws InterruptedException {
 		checkState(() -> args.length == 2, "Usage: java -jar rand-mp3.jar <file-path> <longest sample in seconds>");
 		checkState(() -> new File(args[0]).exists(), "First argument needs to be a file that exists");
 		checkState(() -> new File(args[0]).isDirectory(), "First argument needs to be a directory");
@@ -33,14 +33,20 @@ public class Runner {
 
 					player.play();
 
-					if (reader.readLine().equals("quit")) {
+					switch (reader.readLine().trim()) {
+					case "quit": case "q":
 						quit = true;
+						break;
+					case "r":
+						player.newSampleFromSameFile();
+						break;
+					case "f":
+						player.newSampleFromNewFile();
+						break;
 					}
-
 					player.printSampleStartTime();
 					player.stop();
 				}
-
 				System.out.println("bye!");
 				System.exit(0);
 
@@ -48,20 +54,5 @@ public class Runner {
 				throw new RuntimeException("problem:" + e.getMessage(), e);
 			}
 		});
-	}
-
-	private static void checkState(ThrowingSupplier<Boolean> expression, String template) {
-		try {
-			if (!expression.get()) {
-				throw new IllegalStateException(template);
-			}
-		} catch (Exception e) {
-			throw new IllegalStateException(format(template, e));
-		}
-	}
-
-	@FunctionalInterface
-	private interface ThrowingSupplier<T> {
-		T get() throws Exception;
 	}
 }

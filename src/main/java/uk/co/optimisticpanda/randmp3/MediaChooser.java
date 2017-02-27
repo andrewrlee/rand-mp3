@@ -19,7 +19,7 @@ class MediaChooser {
 		this.files = rootDir.listFiles(file -> file.getName().endsWith(".mp3"));
 	}
 	
-	Track nextTrack() {
+	Track chooseNextTrack() {
 		File file = files[r.nextInt(files.length)];
 		return new Track(file);
 	}
@@ -53,10 +53,15 @@ class MediaChooser {
 			return "That sample started at " + (skipDuration == null ? "unknown": skipDuration.toSeconds()) + " seconds";
 		}
 
-		synchronized Duration durationToSkip() {
+		synchronized Duration chooseNewDurationToSkip(Duration maxSampleSize) {
+			double seconds = media.getDuration().toSeconds();
+			this.skipDuration = seconds(r.nextInt(max(1, (int)seconds - (int) maxSampleSize.toSeconds() + 1)));
+			return this.skipDuration;
+		}
+		
+		synchronized Duration durationToSkip(Duration maxSampleSize) {
 			if (skipDuration == null) {
-				double seconds = media.getDuration().toSeconds();
-				this.skipDuration = seconds(r.nextInt(max(1, (int)seconds - 5)));
+				chooseNewDurationToSkip(maxSampleSize);
 			}
 			return skipDuration;
 		}
